@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drechtaccount | Gedurfd Administratiekantoor</title>
+    <meta name="description" content="Persoonlijke aandacht voor uw administratie, al 40 jaar">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
+    
+    <style>
+        :root {
+            /* Kleuren uit brief - Gedurfd & Onderscheidend */
+            --primary: #1E40AF;
+            --secondary: #DC2626;
+            --accent: #F59E0B;
+            --background: #FEF3C7;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --white: #FFFFFF;
+            --dark-blue: #1E3A8A;
+            --light-yellow: #FFFBEB;
+            
+            /* Typografie */
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Lato', sans-serif;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 3rem;
+            --space-xl: 4rem;
+            --space-2xl: 6rem;
+            --space-3xl: 8rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-md);
+        }
+        
+        h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+        }
+        
+        h2 {
+            font-size: clamp(2.25rem, 4vw, 3.5rem);
+        }
+        
+        h3 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        .section {
+            padding: var(--space-2xl) 0;
+            position: relative;
+        }
+        
+        /* Diagonale elementen */
+        .diagonal-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, transparent 30%);
+            z-index: -1;
+            transform: skewY(-3deg);
+        }
+        
+        .diagonal-bg-reverse {
+            background: linear-gradient(-135deg, var(--secondary) 0%, transparent 30%);
+            transform: skewY(3deg);
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 4px solid var(--accent);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: var(--font-heading);
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--white);
+            background-color: var(--primary);
+        }
+        
+        .phone-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--white);
+            font-weight: 700;
+            text-decoration: none;
+            background: var(--secondary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-family: var(--font-heading);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+        
+        .phone-header:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+        }
+        
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://drechtaccount.nl/wp-content/uploads/2024/05/119771768-59896_1200x800.jpg.webp');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            mix-blend-mode: overlay;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+        
+        .hero h1 {
+            color: var(--white);
+            margin-bottom: var(--space-md);
+            line-height: 1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-xl);
+            opacity: 0.9;
+            max-width: 700px;
+            font-weight: 300;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: var(--accent);
+            color: var(--text);
+            padding: 1.25rem 3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            transition: all 0.3s;
+            border: 3px solid var(--accent);
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+        
+        .cta-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+        
+        .cta-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        /* Personal Photo Section */
+        .personal-section {
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .personal-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        
+        @media (min-width: 1024px) {
+            .personal-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .personal-text h2 {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .personal-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .personal-photo {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 20px 20px 0 var(--accent);
+            transform: rotate(-2deg);
+        }
+        
+        .personal-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: var(--light-yellow);
+            position: relative;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: var(--space-xl);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px) rotate(1deg);
+            border-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+        }
+        
+        /* USP Section */
+        .usp-section {
+            background-color: var(--white);
+        }
+        
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        @media (min-width: 768px) {
+            .usp-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .usp-card {
+            text-align: center;
+            padding: var(--space-xl);
+            background: var(--background);
+            border-radius: 16px;
+            border: 2px dashed var(--accent);
+        }
+        
+        .usp-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: var(--space-md);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+        }
+        
+        @media (min-width: 1024px) {
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .contact-info h3 {
+            color: var(--white);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: var(--space-2xl) 0 var(--space-lg);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .footer-tagline {
+            opacity: 0.8;
+            margin-bottom: var(--space-md);
+            font-size: 1.125rem;
+        }
+        
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: var(--space-md);
+            font-family: var(--font-heading);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-family: var(--font-body);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: var(--space-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+        
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: var(--space-lg);
+                gap: var(--space-md);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s;
+                z-index: 99;
+                border-radius: 0 0 20px 20px;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .phone-header {
+                display: none;
+            }
+            
+            .section {
+                padding: var(--space-xl) 0;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+            }
+            
+            .personal-photo {
+                transform: rotate(0);
+                box-shadow: 10px 10px 0 var(--accent);
+            }
+        }
+        
+        /* Animation Classes */
+        .animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Rotate Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span>Drechtaccount</span>
+                <div class="logo-dot"></div>
+            </a>
+            
+            <button class="hamburger" id="hamburger">
+                <i class="ph ph-list"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#diensten">Diensten</a></li>
+                <li><a href="#over">Over ons</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <a href="tel:0786137444" class="phone-header">
+                <i class="ph ph-phone"></i>
+                078-6137444
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate">
+                <h1>Hans Klijn | Uw boekhouder in Dordrecht</h1>
+                <p class="hero-subtitle">Persoonlijke aandacht voor uw administratie, al 40 jaar</p>
+                
+                <div class="hero-actions">
+                    <a href="tel:0786137444" class="cta-button">
+                        <i class="ph ph-phone"></i>
+                        Bel direct: 078-6137444
+                    </a>
+                    <a href="#contact" class="cta-button cta-secondary">
+                        <i class="ph ph-envelope"></i>
+                        Stuur bericht
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Section -->
+    <section class="section personal-section" id="over">
+        <div class="container">
+            <div class="personal-content">
+                <div class="personal-text animate">
+                    <h2>Hans Klijn | Uw boekhouder in Dordrecht</h2>
+                    <p>Mag ik me aan u voorstellen? Mijn naam is Hans Klijn. Ik ben een allround administratief dienstverlener voor het MKB.</p>
+                    <p>Na vele jaren werkzaam te zijn geweest in de accountancy, heb ik de problemen op onder andere administratief en fiscaal gebied leren kennen en beheersen.</p>
+                    <p>Om mijn kennis op de best mogelijke manier toe te passen heb ik Drechtaccount opgericht. Met behulp van ervaren medewerkers bied ik u graag mijn diensten aan.</p>
+                </div>
+                <div class="personal-photo animate floating">
+                    <img src="https://drechtaccount.nl/wp-content/uploads/2024/05/99.jpg" alt="Hans Klijn - Drechtaccount Dordrecht">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services-section" id="diensten">
+        <div class="diagonal-bg"></div>
+        <div class="container">
+            <h2 class="animate">Onze diensten</h2>
+            <p class="animate">Drechtaccount biedt een uitgebreid pakket aan administratieve en fiscale diensten voor MKB ondernemers in Dordrecht en omgeving.</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate">
+                    <div class="service-icon">
+                        <i class="ph ph-handshake"></i>
+                    </div>
+                    <h3>Begeleiding startende ondernemers</h3>
+                    <p>Deskundige begeleiding bij de opstart van uw onderneming, inclusief administratieve adviezen en hulp bij Kamer van Koophandel inschrijving.</p>
+                </div>
+                
+                <div class="service-card animate">
+                    <div class="service-icon">
+                        <i class="ph ph-file-text"></i>
+                    </div>
+                    <h3>Administratie</h3>
+                    <p>Volledige administratieve verzorging, facturering, crediteurenbeheer en financiële administratie op maat voor uw onderneming.</p>
+                </div>
+                
+                <div class="service-card animate">
+                    <div class="service-icon">
+                        <i class="ph ph-chart-bar"></i>
+                    </div>
+                    <h3>Jaarrekeningen</h3>
+                    <p>Opstellen en bespreken van jaarrekeningen volgens Nederlandse richtlijnen, met professionele rapportage aan stakeholders.</p>
+                </div>
+                
+                <div class="service-card animate">
+                    <div class="service-icon">
+                        <i class="ph ph-currency-eur"></i>
+                    </div>
+                    <h3>Salarisadministratie</h3>
+                    <p>Geautomatiseerde salarisadministratie, loonbelasting aangiften en personeelsadministratie voor een zorgeloze loonverwerking.</p>
+                </div>
+                
+                <div class="service-card animate">
+                    <div class="service-icon">
+                        <i class="ph ph-calculator"></i>
+                    </div>
+                    <h3>Fiscale dienstverlening</h3>
+                    <p>Aangiften vennootschapsbelasting, inkomstenbelasting, omzetbelasting (BTW) en fiscale adviezen voor optimale fiscale planning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USP Section -->
+    <section class="section usp-section">
+        <div class="diagonal-bg-reverse"></div>
+        <div class="container">
+            <h2 class="animate">Waarom Drechtaccount?</h2>
+            
+            <div class="usp-grid">
+                <div class="usp-card animate">
+                    <div class="usp-icon">
+                        <i class="ph ph-star"></i>
+                    </div>
+                    <h3>Deskundig Advies</h3>
+                    <p>Onze experts hebben diepgaande kennis van de Nederlandse boekhoudnormen en -regels. U kunt vertrouwen op ons deskundig advies om uw financiële zaken op orde te houden.</p>
+                </div>
+                
+                <div class="usp-card animate">
+                    <div class="usp-icon">
+                        <i class="ph ph-buildings"></i>
+                    </div>
+                    <h3>Transparantie</h3>
+                    <p>Bij Drechtaccount streven we naar transparantie en betrouwbaarheid. U kunt erop rekenen dat uw administratie in veilige handen is, waardoor u zich kunt concentreren op de groei van uw onderneming.</p>
+                </div>
+                
+                <div class="usp-card animate">
+                    <div class="usp-icon">
+                        <i class="ph ph-users"></i>
+                    </div>
+                    <h3>Klantgericht</h3>
+                    <p>Of u nu een kleine eenmanszaak bent of een grotere besloten vennootschap, wij passen onze benadering aan uw behoeften aan. Onze klantgerichte aanpak zorgt ervoor dat u altijd tevreden bent met onze dienstverlening.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info animate">
+                    <h2>Neem contact op</h2>
+                    <p>Drechtaccount is al ruim 40 jaar een begrip in Dordrecht. Door onze ruime praktijkervaring zijn wij zeer vertrouwd met de gang van zaken in het bedrijfsleven waardoor wij u met raad en daad kunnen bijstaan.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="ph ph-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Telefoon</h4>
+                            <p>078-6137444</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="ph ph-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@drechtaccount.nl</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="ph ph-map-pin"></i>
+                        </div>
+                        <div>
+                            <h4>Adres</h4>
+                            <p>Singel 268<br>3311 HK Dordrecht</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form animate">
+                    <h3>Stuur een bericht</h3>
+                    <form action="#" method="post">
+                        <input type="text" name="naam" placeholder="Uw naam" required>
+                        <input type="email" name="email" placeholder="Uw email" required>
+                        <input type="tel" name="telefoon" placeholder="Uw telefoonnummer">
+                        <textarea name="bericht" placeholder="Uw bericht" rows="5" required></textarea>
+                        <button type="submit" class="cta-button">
+                            <i class="ph ph-paper-plane"></i>
+                            Verstuur bericht
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <span>Drechtaccount</span>
+                        <div class="logo-dot"></div>
+                    </div>
+                    <p class="footer-tagline">Kleinschalig administratiekantoor in Dordrecht met ruim 40 jaar ervaring</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Snelle links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#diensten">Diensten</a></li>
+                        <li><a href="#over">Over ons</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="ph ph-phone"></i> 078-6137444</li>
+                        <li><i class="ph ph-envelope"></i> info@drechtaccount.nl</li>
+                        <li><i class="ph ph-map-pin"></i> Singel 268, Dordrecht</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 Drechtaccount | KvK 54306671</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.');
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
